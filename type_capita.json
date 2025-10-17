@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 700,
+  "height": 400,
+  "title": "Motor Vehicles per Capita by State (2023)",
+  "data": {"url": "Type_Capita.csv"},
+  "transform": [
+    {"filter": "datum.Year == 2023"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "rule"},
+      "encoding": {
+        "x": {"field": "Vehicles_per_Capita", "type": "quantitative", "title": "Vehicles Per Capita"},
+        "y": {"field": "State", "type": "nominal"},
+        "detail": {"field": "Vehicle_Type", "title": "Vehicle Type"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 100},
+      "encoding": {
+        "x": {"field": "Vehicles_per_Capita", "type": "quantitative", "title": "Vehicles Per Capita"},
+        "y": {"field": "State", "type": "nominal"},
+        "color": {"field": "Vehicle_Type", "type": "nominal", "title": "Vehicle Type"},
+        "tooltip": [
+          {"field": "State"},
+          {"field": "Vehicle_Type", "title": "Vehicle Type"},
+          {"field": "Vehicles_per_Capita", "title": "Vehicles Per Capita"}
+        ]
+      }
+    }
+  ]
+}

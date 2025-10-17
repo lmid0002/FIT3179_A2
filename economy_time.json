@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Freight Transport Contribution and GDP in Australia (1974–2023)",
+  "data": {
+    "url": "Economy_Time.csv",
+    "format": {"type": "csv"}
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 400,
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "quantitative",
+              "axis": {"format": "d"},
+              "scale": {"domain": [1974, 2023]}
+            },
+            "y": {
+              "field": "GDP",
+              "type": "quantitative",
+              "axis": {"title": "GDP ($million)", "orient": "right"},
+              "scale": {"zero": true}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "quantitative", "title": "Year", "format": "d"},
+              {"field": "GDP", "type": "quantitative", "title": "GDP ($million)", "format": ","}
+            ],
+            "color": {"value": "#d9d9d9"}
+          }
+        },
+        {
+          "mark": {"type": "line", "point": true, "strokeWidth": 3},
+          "encoding": {
+            "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d"}, "scale": {"domain": {"param": "brush"}}},
+            "y": {
+              "field": "Value_Num",
+              "type": "quantitative",
+              "axis": {"title": "Contribution ($million)", "orient": "left"},
+              "scale": {"zero": false}
+            },
+            "color": {
+              "field": "Mode_Label",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Road", "Air", "Rail", "Storage"],
+                "range": ["#1f77b4", "#ff7f0e", "#2ca02c", "#9467bd"]
+              },
+              "legend": {"title": "Mode of Transport"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "quantitative", "title": "Year", "format": "d"},
+              {"field": "Mode_Label", "type": "nominal", "title": "Mode"},
+              {"field": "Value_Num", "type": "quantitative", "title": "Contribution ($million)", "format": ","},
+              {"field": "Percent_GDP", "type": "nominal", "title": "% of GDP"}
+            ]
+          },
+          "transform": [
+            {"fold": ["Road", "Air", "Rail", "Storage"], "as": ["Mode", "Value"]},
+            {"calculate": "datum.Mode", "as": "Mode_Label"},
+            {"calculate": "toNumber(datum.Value)", "as": "Value_Num"}
+          ]
+        }
+      ],
+      "resolve": {
+        "scale": {"y": "independent"}
+      }
+    },
+    {
+      "width": 800,
+      "height": 100,
+      "mark": {"type": "line", "point": false, "strokeWidth": 2},
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ],
+      "encoding": {
+        "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d"}, "scale": {"domain": [1974, 2023]}},
+        "y": {"field": "Value_Num", "type": "quantitative"},
+        "color": {"field": "Mode_Label", "type": "nominal", "legend": null}
+      },
+      "transform": [
+        {"fold": ["Road", "Air", "Rail", "Storage"], "as": ["Mode", "Value"]},
+        {"calculate": "datum.Mode", "as": "Mode_Label"},
+        {"calculate": "toNumber(datum.Value)", "as": "Value_Num"}
+      ]
+    }
+  ]
+}

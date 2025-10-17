@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Employment in Sub-Industry Over Time",
+  "vconcat": [
+    {
+      "width": 700,
+      "height": 400,
+      "data": { "url": "Employment_Time.csv" },
+      "transform": [
+        {
+          "fold": ["Percent_Road", "Percent_Rail", "Percent_Water", "Percent_Air", "Percent_Other"],
+          "as": ["Mode", "Percentage"]
+        },
+        {
+          "calculate": "toNumber(replace(datum.Percentage, '%', ''))",
+          "as": "PercentageValue"
+        },
+        {
+          "calculate": "replace(datum.Mode, 'Percent_', '')",
+          "as": "ModeName"
+        }
+      ],
+      "mark": {"type": "area", "interpolate": "monotone"},
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "title": "Year",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"format": "d", "tickMinStep": 1}
+        },
+        "y": {
+          "field": "PercentageValue",
+          "type": "quantitative",
+          "title": "Percentage (%)",
+          "stack": "zero"
+        },
+        "color": {"field": "ModeName", "type": "nominal"},
+        "tooltip": [
+          {"field": "Year", "type": "quantitative"},
+          {"field": "ModeName", "type": "nominal", "title": "Mode"},
+          {"field": "PercentageValue", "type": "quantitative", "format": ".2f", "title": "Percentage"}
+        ]
+      }
+    },
+    {
+      "width": 700,
+      "height": 100,
+      "data": { "url": "Employment_Time.csv" },
+      "transform": [
+        {
+          "fold": ["Percent_Road", "Percent_Rail", "Percent_Water", "Percent_Air", "Percent_Other"],
+          "as": ["Mode", "Percentage"]
+        },
+        {
+          "calculate": "toNumber(replace(datum.Percentage, '%', ''))",
+          "as": "PercentageValue"
+        },
+        {
+          "calculate": "replace(datum.Mode, 'Percent_', '')",
+          "as": "ModeName"
+        }
+      ],
+      "mark": {"type": "area", "interpolate": "monotone"},
+      "params": [
+        {
+          "name": "brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {"format": "d", "tickMinStep": 1}
+        },
+        "y": {
+          "field": "PercentageValue",
+          "type": "quantitative",
+          "title": "Percentage (%)",
+          "stack": "zero"
+        },
+        "color": {"field": "ModeName", "type": "nominal", 
+        "legend": {
+                "title": "Mode of Transport",
+                "orient": "right",
+                "direction": "vertical"
+                }
+            }
+      }
+    }
+  ]
+}

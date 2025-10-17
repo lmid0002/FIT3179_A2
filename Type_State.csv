@@ -1,0 +1,73 @@
+﻿id,Transport_Type,State,Population,Percent_Type,Percent_State
+1,Train,New South Wales,102866,34.40%,5.10%
+2,Bus,New South Wales,40866,19.20%,2.03%
+3,Tram/light rail,New South Wales,1817,5.30%,0.09%
+4,Taxi/ride-share service,New South Wales,"5,620",18.10%,0.28%
+5,Car,New South Wales,"1,718,220",25.02%,85.15%
+6,Truck,New South Wales,"26,556",34.46%,1.32%
+7,Motorbike/scooter,New South Wales,"15,049",30.06%,0.75%
+8,Bicycle,New South Wales,"14,535",18.30%,0.72%
+9,Walked only,New South Wales,"92,368",30.20%,4.58%
+10,Train,Victoria,"90,749",30.35%,4.62%
+11,Bus,Victoria,"24,068",11.31%,1.22%
+12,Tram/light rail,Victoria,"22,956",66.97%,1.17%
+13,Taxi/ride-share service,Victoria,"7,645",24.62%,0.39%
+14,Car,Victoria,"1,701,094",24.77%,86.55%
+15,Truck,Victoria,"16,508",21.42%,0.84%
+16,Motorbike/scooter,Victoria,"7,743",15.46%,0.39%
+17,Bicycle,Victoria,"22,375",28.17%,1.14%
+18,Walked only,Victoria,"72,373",23.66%,3.68%
+19,Train,Queensland,43697,14.61%,2.43%
+20,Bus,Queensland,"50,011",23.50%,2.78%
+21,Tram/light rail,Queensland,2500,7.29%,0.14%
+22,Taxi/ride-share service,Queensland,7722,24.86%,0.43%
+23,Car,Queensland,1577751,22.98%,87.78%
+24,Truck,Queensland,18802,24.40%,1.05%
+25,Motorbike/scooter,Queensland,16072,32.10%,0.89%
+26,Bicycle,Queensland,17215,21.67%,0.96%
+27,Walked only,Queensland,63580,20.78%,3.54%
+28,Train,South Australia,8688,2.91%,1.32%
+29,Bus,South Australia,31760,14.92%,4.82%
+30,Tram/light rail,South Australia,3728,10.88%,0.57%
+31,Taxi/ride-share service,South Australia,2616,8.42%,0.40%
+32,Car,South Australia,576735,8.40%,87.52%
+33,Truck,South Australia,4112,5.34%,0.62%
+34,Motorbike/scooter,South Australia,3405,6.80%,0.52%
+35,Bicycle,South Australia,7336,9.24%,1.11%
+36,Walked only,South Australia,20575,6.73%,3.12%
+37,Train,Western Australia,52664,17.61%,5.12%
+38,Bus,Western Australia,43461,20.42%,4.22%
+39,Tram/light rail,Western Australia,165,0.48%,0.02%
+40,Taxi/ride-share service,Western Australia,5439,17.51%,0.53%
+41,Car,Western Australia,878822,12.80%,85.41%
+42,Truck,Western Australia,7775,10.09%,0.76%
+43,Motorbike/scooter,Western Australia,3725,7.44%,0.36%
+44,Bicycle,Western Australia,8790,11.07%,0.85%
+45,Walked only,Western Australia,28115,9.19%,2.73%
+46,Train,Tasmania,118,0.04%,0.06%
+47,Bus,Tasmania,7666,3.60%,3.79%
+48,Tram/light rail,Tasmania,27,0.08%,0.01%
+49,Taxi/ride-share service,Tasmania,882,2.84%,0.44%
+50,Car,Tasmania,178039,2.59%,88.05%
+51,Truck,Tasmania,1748,2.27%,0.86%
+52,Motorbike/scooter,Tasmania,1141,2.28%,0.56%
+53,Bicycle,Tasmania,1787,2.25%,0.88%
+54,Walked only,Tasmania,10785,3.53%,5.33%
+55,Train,Northern Territory,57,0.02%,0.06%
+56,Bus,Northern Territory,2706,1.27%,2.97%
+57,Tram/light rail,Northern Territory,24,0.07%,0.03%
+58,Taxi/ride-share service,Northern Territory,457,1.47%,0.50%
+59,Car,Northern Territory,75780,1.10%,83.28%
+60,Truck,Northern Territory,556,0.72%,0.61%
+61,Motorbike/scooter,Northern Territory,1140,2.28%,1.25%
+62,Bicycle,Northern Territory,2156,2.71%,2.37%
+63,Walked only,Northern Territory,8115,2.65%,8.92%
+64,Train,Australian Capital Territory,211,0.07%,0.11%
+65,Bus,Australian Capital Territory,12286,5.77%,6.30%
+66,Tram/light rail,Australian Capital Territory,3061,8.93%,1.57%
+67,Taxi/ride-share service,Australian Capital Territory,675,2.17%,0.35%
+68,Car,Australian Capital Territory,160775,2.34%,82.43%
+69,Truck,Australian Capital Territory,1009,1.31%,0.52%
+70,Motorbike/scooter,Australian Capital Territory,1796,3.59%,0.92%
+71,Bicycle,Australian Capital Territory,5233,6.59%,2.68%
+72,Walked only,Australian Capital Territory,9988,3.27%,5.12%

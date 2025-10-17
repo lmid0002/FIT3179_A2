@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Accidents by Vehicle Group and Sub-Type (2011–2021) - Stacked Bar",
+  "width": 700,
+  "height": 400,
+  "data": { "url": "Accident_Type.csv" },
+  "params": [
+    {
+      "name": "VehicleGroup_selection",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": [null, "Car", "Light", "Heavy", "Other"],
+        "labels": ["Show All", "Car", "Light", "Heavy", "Other"],
+        "name": "Vehicle Group:"
+      }
+    },
+    {
+      "name": "Year_Min",
+      "value": 2011,
+      "bind": {
+        "input": "range",
+        "min": 2011,
+        "max": 2021,
+        "step": 1,
+        "name": "Min Year:"
+      }
+    },
+    {
+      "name": "Year_Max",
+      "value": 2021,
+      "bind": {
+        "input": "range",
+        "min": 2011,
+        "max": 2021,
+        "step": 1,
+        "name": "Max Year:"
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": [
+        "Car_Driver","Car_Passenger","Car_Unknown",
+        "MotorCycle","PedalCycle","Pedestrian",
+        "Heavy_Driver","Heavy_Passenger","Heavy_Uknown",
+        "Other"
+      ],
+      "as": ["Type","Count"]
+    },
+    {
+      "calculate": "toNumber(replace(datum.Count,' ',''))",
+      "as": "Number_of_Accidents"
+    },
+    {
+      "calculate": "datum.Type==='Car_Driver'||datum.Type==='Car_Passenger'||datum.Type==='Car_Unknown' ? 'Car' : datum.Type==='Heavy_Driver'||datum.Type==='Heavy_Passenger'||datum.Type==='Heavy_Uknown' ? 'Heavy' : datum.Type==='MotorCycle'||datum.Type==='PedalCycle'||datum.Type==='Pedestrian' ? 'Light' : 'Other'",
+      "as": "Vehicle_Group"
+    },
+    {
+      "calculate": "indexof(datum.Type,'_') >= 0 ? substring(datum.Type,indexof(datum.Type,'_')+1) : datum.Type",
+      "as": "Sub_Type"
+    },
+    {
+      "filter": "datum.Vehicle_Group == VehicleGroup_selection || VehicleGroup_selection == null"
+    },
+    {
+      "filter": "datum.Year >= Year_Min && datum.Year <= Year_Max"
+    }
+  ],
+  "mark":"bar",
+  "encoding": {
+    "x":{"field":"Year","type":"ordinal","title":"Year"},
+    "y":{"field":"Number_of_Accidents","type":"quantitative","stack":"zero","title":"Number of Accidents"},
+    "color":{"field":"Vehicle_Group","type":"nominal", "title": "Vehicle Group"},
+    "tooltip":[
+      {"field":"Year","type":"ordinal"},
+      {"field":"Vehicle_Group","type":"nominal","title":"Vehicle Group"},
+      {"field":"Sub_Type","type":"nominal","title":"Type"},
+      {"field":"Number_of_Accidents","type":"quantitative","title":"Number of Accidents","format":","}
+    ]
+  }
+}
