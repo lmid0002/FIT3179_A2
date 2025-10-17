@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Australian State Transport Mode Usage",
+  "width": 800,
+  "height": 400,
+  "projection": {"type": "conicEqualArea",
+      "center": [-25.6, 134.4],
+      "parallels": [-18,-36],
+      "rotate": [-134.4,0,0]
+},
+  "data": {
+    "url": "STE_2021_AUST_GDA2020.json",
+    "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.STE_NAME21",
+      "from": {
+        "data": {
+          "url":"Type_State_Long.csv"
+        },
+        "key":"State",
+        "fields":["Train_Percent_State","Bus_Percent_State","Tram/light rail_Percent_State","Taxi/ride-share service_Percent_State","Car_Percent_State","Truck_Percent_State","Motorbike/scooter_Percent_State","Bicycle_Percent_State","Walked only_Percent_State","Train_Population","Bus_Population","Car_Population"]
+      }
+      },
+    {"fold":["Train_Percent_State","Bus_Percent_State","Tram/light rail_Percent_State","Taxi/ride-share service_Percent_State","Car_Percent_State","Truck_Percent_State","Motorbike/scooter_Percent_State","Bicycle_Percent_State","Walked only_Percent_State"],
+      "as":["Metric","Value"]},
+    {"calculate":"toNumber(replace(datum.Value,'%',''))","as":"Percent_State_Num"},
+    {"calculate":"datum.Metric=='Train_Percent_State'?datum.Percent_State_Num:datum.Metric=='Car_Percent_State'?(datum.Percent_State_Num-80)*(10/10):datum.Percent_State_Num","as":"Scaled_Value"},
+    {"calculate":"datum.Metric=='Train_Percent_State'?datum.Train_Population:datum.Metric=='Car_Percent_State'?datum.Car_Population:datum.Bus_Population","as":"Population"},
+    {"calculate":"replace(datum.Metric,'_Percent_State','')","as":"Transport_Type"},
+    {"filter":"datum.Metric==metric"}
+  ],
+  "params":[{"name":"metric","value":"Train_Percent_State","bind":{"input":"select","options":["Train_Percent_State","Bus_Percent_State","Tram/light rail_Percent_State","Taxi/ride-share service_Percent_State","Car_Percent_State","Truck_Percent_State","Motorbike/scooter_Percent_State","Bicycle_Percent_State","Walked only_Percent_State"],"labels":["Train","Bus","Tram/light rail","Taxi/ride-share service","Car","Truck","Motorbike/scooter","Bicycle","Walked only"],"name":"Select Transport Mode: "}}],
+  "mark":{"type":"geoshape","stroke":"white"},
+  "encoding":{
+    "color":{"field":"Scaled_Value","type":"quantitative","scale":{"domain":[0,10],"range":["#c6dbef","#08306b"]},"legend":{"title":"Transport Type Usage Score"}},
+    "tooltip":[
+      {"field":"properties.STE_NAME21","type":"nominal","title":"State"},
+      {"field":"Transport_Type","type":"nominal","title":"Transport Type"},
+      {"field":"Percent_State_Num","type":"quantitative","title":"% of State Transport"},
+      {"field":"Population","type":"quantitative","title":"Usage Population","format":","}
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Transport Usage by Income Bracket (% of Type)",
+  "width": 650,
+  "height": 400,
+  "data": {"url": "Type_Income.csv"},
+  "mark": "rect",
+  "encoding": {
+    "x": {
+      "field": "Income",
+      "type": "ordinal",
+      "title": "Income Bracket",
+      "axis": {"ticks": false, "domain": false, "labelAngle": -45, "labelAlign": "right"},
+      "sort": ["Negative/Nil income","$1-$149","$150-$299","$300-$399","$400-$499","$500-$649","$650-$799","$800-$999","$1,000-$1,249","$1,250-$1,499","$1,500-$1,749","$1,750-$1,999","$2,000-$2,999","$3,000-$3,499","$3,500 or more"]
+    },
+    "y": {
+      "field": "Type",
+      "type": "nominal",
+      "title": "Transport Type",
+      "axis": {"ticks": false, "domain": false}
+    },
+    "color": {
+      "field": "Percent_Type",
+      "type": "quantitative",
+      "title": "% of Type",
+      "scale": {"scheme": "reds"}
+    },
+    "tooltip": [
+      {"field": "Type", "type": "nominal"},
+      {"field": "Income", "type": "nominal"},
+      {"field": "Population", "type": "quantitative", "format": ","},
+      {"field": "Percent_Type", "type": "quantitative", "format": ".1f", "title": "% of Type"},
+      {"field": "Percent_Income", "type": "quantitative", "format": ".1f", "title": "% of Income"}
+    ]
+  },
+  "config": {
+    "axis": {"grid": false, "labelFontSize": 12},
+    "view": {"stroke": ""}
+  }
+}

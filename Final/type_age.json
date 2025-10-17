@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Most Popular Mode of Transport per Age (Except Car)",
+  "width": 700,
+  "height": 400,
+  "data": {"url": "Type_Age.csv"},
+  "transform": [
+    {"filter": "datum.Type != 'Car'"}
+  ],
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Age",
+      "type": "ordinal",
+      "title": "Age Group",
+      "sort": ["15-24","25-34","35-44","45-54","55-64","65-74","75+"]
+    },
+    "y": {
+      "field": "Percent_Age",
+      "type": "quantitative",
+      "title": "% of Age Group"
+    },
+    "color": {
+      "field": "Type",
+      "type": "nominal",
+      "title": "Transport Type"
+    },
+    "tooltip": [
+      {"field": "Type", "type": "nominal"},
+      {"field": "Age", "type": "nominal"},
+      {"field": "Population", "type": "quantitative", "format": ","},
+      {"field": "Percent_Type", "type": "quantitative", "format": ".1f", "title": "% of Type"},
+      {"field": "Percent_Age", "type": "quantitative", "format": ".1f", "title": "% of Age"}
+    ]
+  },
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 14},
+    "legend": {"titleFontSize": 13, "labelFontSize": 12},
+    "view": {"stroke": ""}
+  }
+}

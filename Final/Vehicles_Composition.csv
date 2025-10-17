@@ -1,0 +1,21 @@
+﻿id,House_Comp,Vehicles_Owned,Population,Percent_Type,Percent_Number
+1,One Family,None,185849,3%,28%
+2,One Family,One,1676235,27%,50%
+3,One Family,Two,2957782,47%,88%
+4,One Family,Three,968803,15%,87%
+5,One Family,Four or More,515754,8%,81%
+6,Multiple Family,None,4293,2%,1%
+7,Multiple Family,One,16685,9%,0%
+8,Multiple Family,Two,42664,24%,1%
+9,Multiple Family,Three,48541,27%,4%
+10,Multiple Family,Four or More,65296,37%,10%
+11,Lone Person,None,440217,19%,65%
+12,Lone Person,One,1555823,67%,46%
+13,Lone Person,Two,233758,10%,7%
+14,Lone Person,Three,46444,2%,4%
+15,Lone Person,Four or More,30087,1%,5%
+16,Group,None,43609,12%,6%
+17,Group,One,104995,30%,3%
+18,Group,Two,132530,38%,4%
+19,Group,Three,47201,13%,4%
+20,Group,Four or More,23806,7%,4%

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Earnings by Transport Mode Over Time (Normalized Stacked Bar)",
+  "width": 700,
+  "height": 400,
+  "data": { "url": "Earnings_Time.csv" },
+  "transform": [
+    {
+      "fold": ["Road","Air","Rail","Other"],
+      "as": ["Mode","Earnings"]
+    },
+    {
+      "joinaggregate": [{"op": "sum", "field": "Earnings", "as": "Total_Earnings"}],
+      "groupby": ["Year"]
+    },
+    {
+      "calculate": "(datum.Earnings / datum.Total_Earnings) * 100",
+      "as": "Percentage"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Year","type": "ordinal","title":"Year"},
+    "y": {
+      "field": "Earnings",
+      "type": "quantitative",
+      "stack": "normalize",
+      "title":"Proportion of Total Earnings"
+    },
+    "color": {
+      "field": "Mode",
+      "type": "nominal",
+      "title": "Transport Mode",
+      "scale": {"scheme": "category10"}
+    },
+    "tooltip": [
+      {"field":"Year","type":"ordinal"},
+      {"field":"Mode","type":"nominal","title":"Transport Mode"},
+      {"field":"Earnings","type":"quantitative","title":"Earnings","format":","},
+      {"field":"Percentage","type":"quantitative","title":"% of Total","format":".1f"}
+    ]
+  }
+}

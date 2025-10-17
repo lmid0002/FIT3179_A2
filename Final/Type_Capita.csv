@@ -1,0 +1,82 @@
+Year,State,Vehicle_Type,Vehicles_per_Capita
+2023,New South Wales,Passenger vehicles,550.0
+2023,Victoria,Passenger vehicles,605.9
+2023,Queensland,Passenger vehicles,579.3
+2023,South Australia,Passenger vehicles,634.5
+2023,Western Australia,Passenger vehicles,602.7
+2023,Tasmania,Passenger vehicles,615.9
+2023,Northern Territory,Passenger vehicles,392.3
+2023,Australian Capital Territory,Passenger vehicles,590.4
+2023,Australia,Passenger vehicles,582.4
+2023,New South Wales,Campervans,3.8
+2023,Victoria,Campervans,3.6
+2023,Queensland,Campervans,5.0
+2023,South Australia,Campervans,2.0
+2023,Western Australia,Campervans,0.7
+2023,Tasmania,Campervans,10.2
+2023,Northern Territory,Campervans,0.4
+2023,Australian Capital Territory,Campervans,1.8
+2023,Australia,Campervans,3.6
+2023,New South Wales,Light commercial vehicles,129.0
+2023,Victoria,Light commercial vehicles,130.0
+2023,Queensland,Light commercial vehicles,191.4
+2023,South Australia,Light commercial vehicles,144.4
+2023,Western Australia,Light commercial vehicles,168.4
+2023,Tasmania,Light commercial vehicles,229.3
+2023,Northern Territory,Light commercial vehicles,200.3
+2023,Australian Capital Territory,Light commercial vehicles,85.2
+2023,Australia,Light commercial vehicles,149.4
+2023,New South Wales,Light rigid trucks,8.2
+2023,Victoria,Light rigid trucks,7.5
+2023,Queensland,Light rigid trucks,8.8
+2023,South Australia,Light rigid trucks,6.2
+2023,Western Australia,Light rigid trucks,7.1
+2023,Tasmania,Light rigid trucks,8.1
+2023,Northern Territory,Light rigid trucks,7.7
+2023,Australian Capital Territory,Light rigid trucks,4.1
+2023,Australia,Light rigid trucks,7.8
+2023,New South Wales,Heavy rigid trucks,13.1
+2023,Victoria,Heavy rigid trucks,13.8
+2023,Queensland,Heavy rigid trucks,15.3
+2023,South Australia,Heavy rigid trucks,14.3
+2023,Western Australia,Heavy rigid trucks,21.2
+2023,Tasmania,Heavy rigid trucks,18.5
+2023,Northern Territory,Heavy rigid trucks,19.5
+2023,Australian Capital Territory,Heavy rigid trucks,3.9
+2023,Australia,Heavy rigid trucks,14.7
+2023,New South Wales,Articulated trucks,3.3
+2023,Victoria,Articulated trucks,5.0
+2023,Queensland,Articulated trucks,4.8
+2023,South Australia,Articulated trucks,5.6
+2023,Western Australia,Articulated trucks,6.6
+2023,Tasmania,Articulated trucks,4.0
+2023,Northern Territory,Articulated trucks,5.3
+2023,Australian Capital Territory,Articulated trucks,0.4
+2023,Australia,Articulated trucks,4.6
+2023,New South Wales,Non-freight-carrying vehicles,0.8
+2023,Victoria,Non-freight-carrying vehicles,1.7
+2023,Queensland,Non-freight-carrying vehicles,1.2
+2023,South Australia,Non-freight-carrying vehicles,2.1
+2023,Western Australia,Non-freight-carrying vehicles,2.6
+2023,Tasmania,Non-freight-carrying vehicles,1.9
+2023,Northern Territory,Non-freight-carrying vehicles,1.6
+2023,Australian Capital Territory,Non-freight-carrying vehicles,0.4
+2023,Australia,Non-freight-carrying vehicles,1.4
+2023,New South Wales,Buses,3.3
+2023,Victoria,Buses,3.0
+2023,Queensland,Buses,4.1
+2023,South Australia,Buses,3.5
+2023,Western Australia,Buses,5.5
+2023,Tasmania,Buses,5.4
+2023,Northern Territory,Buses,10.8
+2023,Australian Capital Territory,Buses,2.3
+2023,Australia,Buses,3.7
+2023,New South Wales,Motorcycles,34.5
+2023,Victoria,Motorcycles,30.8
+2023,Queensland,Motorcycles,43.5
+2023,South Australia,Motorcycles,34.3
+2023,Western Australia,Motorcycles,45.1
+2023,Tasmania,Motorcycles,36.5
+2023,Northern Territory,Motorcycles,23.1
+2023,Australian Capital Territory,Motorcycles,30.3
+2023,Australia,Motorcycles,36.4

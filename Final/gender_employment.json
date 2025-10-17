@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Diverging bar chart showing male/female employment by transport mode per year",
+  "data": {
+    "url": "Gender_Employment.csv"
+  },
+  "params": [
+    {
+      "name": "modeFilter",
+      "value": "Water",
+      "bind": {
+        "input": "select",
+        "options": ["Total", "Road", "Rail", "Water", "Air & Space", "Other"],
+        "labels": ["Total", "Road", "Rail", "Water", "Air & Space", "Other"],
+        "name": "Transport Mode:"
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": ["Road_Male", "Road_Female", "Rail_Male", "Rail_Female", "Water_Male", "Water_Female", "Air & Space_Male", "Air & Space_Female", "Other_Male", "Other_Female", "Total_Male", "Total_Female"],
+      "as": ["mode_gender", "value"]
+    },
+    {
+      "calculate": "split(datum.mode_gender, '_')[0]",
+      "as": "mode"
+    },
+    {
+      "calculate": "split(datum.mode_gender, '_')[1] || 'Total'",
+      "as": "gender"
+    },
+    {
+      "calculate": "toNumber(datum.value)",
+      "as": "PercentageValue"
+    },
+    {
+      "calculate": "datum.gender == 'Male' ? -datum.PercentageValue : datum.PercentageValue",
+      "as": "signed_value"
+    },
+    {
+      "filter": "datum.mode == modeFilter"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Year",
+      "type": "ordinal",
+      "sort": "ascending",
+      "axis": {"title": "Year"}
+    },
+    "x": {
+      "field": "signed_value",
+      "type": "quantitative",
+      "title": "Percent in Field",
+      "scale": {"domain": [-100, 100]},
+      "axis": {
+          "labelExpr": "abs(datum.value) + '%'",
+          "tickCount": 5
+      }
+    },
+    "color": {
+      "field": "gender",
+      "scale": {"domain": ["Male", "Female"], "range": ["#1f77b4", "#e377c2"]},
+      "legend": {"title": "Gender"}
+    },
+    "tooltip": [
+      {"field": "Year", "type": "ordinal"},
+      {"field": "mode", "type": "nominal", "title": "Sub-Industry"},
+      {"field": "gender", "type": "nominal", "title": "Gender"},
+      {"field": "PercentageValue", "type": "quantitative", "title": "% in Field"}
+    ]
+  },
+  "width": 400,
+  "height": 600,
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}

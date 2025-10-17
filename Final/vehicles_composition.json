@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Vehicle Ownership Across Household Types",
+  "width": 500,
+  "height": 500,
+  "data": {"url": "Vehicles_Composition.csv"},
+  "layer": [
+    {
+      "selection": {
+        "legend_filter": {
+          "type": "multi",
+          "fields": ["House_Comp"],
+          "bind": "legend"
+        },
+        "hover_highlight": {
+          "type": "point",
+          "fields": ["House_Comp"],
+          "on": "mouseover",
+          "clear": "mouseout"
+        }
+      },
+      "transform": [
+        {"filter": {"selection": "legend_filter"}}
+      ],
+      "mark": {"type": "bar", "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "Vehicles_Owned",
+          "type": "ordinal",
+          "title": "Number of Vehicles Owned",
+          "sort": ["None", "One", "Two", "Three", "Four or More"]
+        },
+        "y": {"field": "Population", "type": "quantitative", "title": "Number of Households"},
+        "color": {
+          "field": "House_Comp",
+          "type": "nominal",
+          "title": "Household Type"
+        },
+        "opacity": {
+          "condition": {"selection": "hover_highlight", "value": 1},
+          "value": 0.6
+        },
+        "tooltip": [
+          {"field": "House_Comp", "type": "nominal", "title": "Household Type"},
+          {"field": "Vehicles_Owned", "type": "nominal", "title": "Vehicles Owned"},
+          {"field": "Population", "type": "quantitative", "title": "Population", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": {"selection": "legend_filter"}},
+        {"aggregate": [{"op": "sum", "field": "Population", "as": "Total"}], "groupby": ["Vehicles_Owned"]},
+        {"calculate": "format(datum.Total, ',')", "as": "Total_Formatted"}
+      ],
+      "mark": {"type": "text", "dy": -5, "fontSize": 14, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "Vehicles_Owned", "type": "ordinal", "sort": ["None", "One", "Two", "Three", "Four or More"]},
+        "y": {"field": "Total", "type": "quantitative"},
+        "text": {"field": "Total_Formatted", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "axis": {"labelFontSize": 14, "titleFontSize": 16},
+    "legend": {"titleFontSize": 14, "labelFontSize": 12}
+  }
+}

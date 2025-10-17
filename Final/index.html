@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: white;
+      font-size: 3em;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .intro-section {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    
+    .intro-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    
+    .intro-section p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 1.1em;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    
+    .chart-section {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    
+    .chart-section.no-text {
+      grid-template-columns: 1fr;
+    }
+    
+    .chart {
+      width: 100%;
+      min-height: 400px;
+    }
+    
+    .chart-text {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      height: fit-content;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    
+    .chart-text h3 {
+      font-family: 'Playfair Display', serif;
+      color: #667eea;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    
+    .chart-text p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05em;
+      word-wrap: break-word;
+      max-width: 100%;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    
+    @media (max-width: 768px) {
+      .chart-section {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      .chart {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Transport in Australia</h1>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+      <div class="intro-section">
+        <h2>Overview</h2>
+        <p>This dashboard explores Australia's transport landscape through a range of interactive visuals, showing how people move and what influences their choices. It compares transport use by state, age, employment, and income, alongside trends in vehicle ownership and accident rates. The visuals together paint a picture of how geography, lifestyle, and social factors shape movement across the country.</p>
+      </div>
+      <div class="intro-section" style="padding: 30px;">
+        <div class="chart" id="vehicles_composition"></div>
+      </div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="australian_transport"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="accident_type"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="type_age"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="gender_employment"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="employment_time"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="earnings_time"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="economy_time"></div>
+    </div>
+    
+    <div class="chart-section">
+      <div class="chart" id="type_income"></div>
+      <div class="chart-text">
+        <h3>Income Distribution</h3>
+        <p>Truck drivers earn fairly consistently within a narrow income range, while cyclists tend to be higher earners. Bus users are spread across all income levels, showing that public transport appeals to a wide range of earners. Car users generally cluster in the middle-to-upper income brackets.</p>
+      </div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="type_capita"></div>
+    </div>
+    
+    <div class="chart-section no-text">
+      <div class="chart" id="type_state"></div>
+    </div>
+  </div>
+
+  <script>
+    const chartData = [
+      { id: 'australian_transport', file: 'australian_transport.json' },
+      { id: 'vehicles_composition', file: 'vehicles_composition.json' },
+      { id: 'accident_type', file: 'accident_type.json' },
+      { id: 'type_age', file: 'type_age.json' },
+      { id: 'gender_employment', file: 'gender_employment.json' },
+      { id: 'employment_time', file: 'employment_time.json' },
+      { id: 'earnings_time', file: 'earnings_time.json' },
+      { id: 'economy_time', file: 'economy_time.json' },
+      { id: 'type_income', file: 'type_income.json' },
+      { id: 'type_capita', file: 'type_capita.json' },
+      { id: 'type_state', file: 'type_state.json' }
+    ];
+
+    chartData.forEach(chart => {
+      vegaEmbed(`#${chart.id}`, chart.file, { actions: false });
+    });
+  </script>
+
+  <div style="background: white; padding: 20px; border-radius: 12px; margin-top: 40px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+    <p style="color: #666; font-size: 0.95em; font-weight: 500; line-height: 1.6;">
+      Visualisation by Lior Middeldorf on 17/10/2025. Data from 
+      <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/transport-census/2021" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">ABS</a> 
+      and 
+      <a href="https://www.bitre.gov.au/publications/2025/australian-infrastructure-and-transport-statistics-yearbook-2024" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">BITRE</a>
+    </p>
+  </div>
+</body>
+</html>
