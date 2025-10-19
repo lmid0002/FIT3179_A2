@@ -1,9 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Employment in Sub-Industry Over Time",
+  "title": {
+    "text": "Employment in Sub-Industry Over Time",
+    "anchor": "middle"
+  },
   "vconcat": [
     {
-      "width": 700,
+      "width": 650,
       "height": 400,
       "data": { "url": "Employment_Time.csv" },
       "transform": [
@@ -44,7 +47,7 @@
       }
     },
     {
-      "width": 700,
+      "width": 650,
       "height": 100,
       "data": { "url": "Employment_Time.csv" },
       "transform": [

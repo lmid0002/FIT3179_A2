@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Earnings by Transport Mode Over Time (Normalized Stacked Bar)",
-  "width": 700,
+  "title": "Earnings by Transport Mode Over Time",
+  "width": 500,
   "height": 400,
   "data": { "url": "Earnings_Time.csv" },
   "transform": [

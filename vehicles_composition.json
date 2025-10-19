@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Vehicle Ownership Across Household Types",
-  "width": 500,
+  "width": 575,
   "height": 500,
   "data": {"url": "Vehicles_Composition.csv"},
   "layer": [
@@ -53,7 +53,7 @@
         {"aggregate": [{"op": "sum", "field": "Population", "as": "Total"}], "groupby": ["Vehicles_Owned"]},
         {"calculate": "format(datum.Total, ',')", "as": "Total_Formatted"}
       ],
-      "mark": {"type": "text", "dy": -5, "fontSize": 14, "fontWeight": "bold"},
+      "mark": {"type": "text", "dy": -5, "fontSize": 12, "fontWeight": "bold"},
       "encoding": {
         "x": {"field": "Vehicles_Owned", "type": "ordinal", "sort": ["None", "One", "Two", "Three", "Four or More"]},
         "y": {"field": "Total", "type": "quantitative"},
@@ -62,7 +62,7 @@
     }
   ],
   "config": {
-    "axis": {"labelFontSize": 14, "titleFontSize": 16},
-    "legend": {"titleFontSize": 14, "labelFontSize": 12}
+    "axis": {"labelFontSize": 12, "titleFontSize": 12},
+    "legend": {"titleFontSize": 12, "labelFontSize": 12}
   }
 }

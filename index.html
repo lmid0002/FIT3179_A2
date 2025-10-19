@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <title>Transport in Australia</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -40,6 +40,18 @@
       font-size: 3em;
       margin-bottom: 30px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .section-header {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      margin-top: 50px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      padding-top: 30px;
+      border-top: 2px solid rgba(255,255,255,0.3);
     }
     
     .intro-section {
@@ -114,6 +126,16 @@
       font-weight: 500;
       letter-spacing: 0.3px;
     }
+
+    .male {
+      color: #1f77b4;
+      font-weight: 600;
+    }
+
+    .female {
+      color: #e377c2;
+      font-weight: 600;
+    }
     
     @media (max-width: 768px) {
       .chart-section {
@@ -122,6 +144,10 @@
       
       h1 {
         font-size: 2em;
+      }
+
+      .section-header {
+        font-size: 1.5em;
       }
       
       .chart {
@@ -134,58 +160,103 @@
   <div class="container">
     <h1>Transport in Australia</h1>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
-      <div class="intro-section">
-        <h2>Overview</h2>
-        <p>This dashboard explores Australia's transport landscape through a range of interactive visuals, showing how people move and what influences their choices. It compares transport use by state, age, employment, and income, alongside trends in vehicle ownership and accident rates. The visuals together paint a picture of how geography, lifestyle, and social factors shape movement across the country.</p>
+    <div class="intro-section" style="max-width: 580px; margin: 0 auto 20px; padding: 20px;">
+      <h2 style="margin-bottom: 10px; font-size: 1.3em;">Overview</h2>
+      <p style="font-size: 1.07em; line-height: 1.5; margin: 0;">This dashboard explores Australia's transport landscape through interactive visuals, showing how people move and what influences their choices. It compares transport use by state, age, employment, and income, alongside trends in vehicle ownership and accident rates. The visuals paint a picture of how geography, lifestyle, and social factors shape movement across the country.</p>
+    </div>
+
+    <h2 class="section-header">Transport Type</h2>
+    
+    <div class="chart-section">
+      <div class="chart" id="type_state"></div>
+      <div class="chart-text">
+        <h3>State Transport Usage</h3>
+        <p>This map shows the proportion of each transport type within total transport use by state. Western Australia has the highest share of train travel relative to other states, while nearly 90% of transport in Tasmania is by car. The Northern Territory stands out with almost double the walking rate of any other state.</p>
       </div>
-      <div class="intro-section" style="padding: 30px;">
-        <div class="chart" id="vehicles_composition"></div>
-      </div>
     </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="australian_transport"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="accident_type"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="type_age"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="gender_employment"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="employment_time"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="earnings_time"></div>
-    </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="economy_time"></div>
-    </div>
-    
+
     <div class="chart-section">
       <div class="chart" id="type_income"></div>
       <div class="chart-text">
         <h3>Income Distribution</h3>
-        <p>Truck drivers earn fairly consistently within a narrow income range, while cyclists tend to be higher earners. Bus users are spread across all income levels, showing that public transport appeals to a wide range of earners. Car users generally cluster in the middle-to-upper income brackets.</p>
+        <p>This heatmap shows the most common income levels among people who primarily use different types of transport to get to work. Truck drivers earn fairly consistently within a narrow income range, while cyclists tend to be higher earners. Bus users are spread across all income levels, showing that public transport appeals to a wide range of earners. Car users generally cluster in the middle-to-upper income brackets.</p>
       </div>
     </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="type_capita"></div>
+
+    <div class="chart-section">
+      <div class="chart" id="type_age"></div>
+      <div class="chart-text">
+        <h3>Transport by Age</h3>
+        <p>This line graph shows the most common modes of transport, as a percentage of each age group's total transport use, excluding cars (which dominate overall). Younger people tend to favour walking, trains, and buses, though the latter two drop off sharply with age. Older groups rely more on walking, with truck use rising steadily. Bus use declines consistently across age groups, while bicycle use fluctuates, peaking around middle age.</p>
+      </div>
     </div>
-    
-    <div class="chart-section no-text">
-      <div class="chart" id="type_state"></div>
+
+    <h2 class="section-header">Ownership & Accidents</h2>
+
+    <div class="chart-section">
+      <div class="chart" id="vehicles_composition"></div>
+      <div class="chart-text">
+        <h3>Vehicle Ownership</h3>
+        <p>This stacked bar chart shows how many households own different numbers of vehicles, broken down by household composition. Households with one or two vehicles dominate, accounting for over 6.7 million combined. Single occupants and multi-family homes show lower ownership rates, while lone-person households represent the largest share of zero-vehicle households. You can click a household composition in the legend to explore the data further.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="australian_transport"></div>
+      <div class="chart-text">
+        <h3>Transport by State</h3>
+        <p>This bubble chart shows the relationship between the number of vehicles per 1,000 people and road deaths per 10,000 people in each state. The size of each bubble represents the total kilometres travelled within that state. NSW and QLD lead in vehicle usage with high kilometers traveled, while SA shows elevated road fatality rates despite similar vehicle ownership. ACT has the lowest fatality rate.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="type_capita"></div>
+      <div class="chart-text">
+        <h3>Vehicles Per Capita</h3>
+        <p>This graph shows the number of each vehicle type per capita across states. The overall ordering is similar for all states, though the Northern Territory stands out with noticeably fewer vehicles per person, likely due to its low population density. Light commercial vehicles vary the most, with Tasmania recording the highest rate.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="accident_type"></div>
+      <div class="chart-text">
+        <h3>Accidents by Vehicle</h3>
+        <p>This stacked bar chart shows the number of road accidents by vehicle group and type. Total accidents increased from about 22,000 in 2011 to 26,000 in 2021. Light vehicles, such as bicycles, motorbikes, and pedestrians, show steady growth and remain the most at risk. Heavy and other vehicle accidents stayed relatively stable over the same period.</p>
+      </div>
+    </div>
+
+    <h2 class="section-header">Employment & Economy</h2>
+
+    <div class="chart-section">
+      <div class="chart" id="employment_time"></div>
+      <div class="chart-text">
+        <h3>Employment Over Time</h3>
+        <p>This area chart shows the share of total industry employment held by each specific sub-industry. Road transport dominates at approximately 70% of employment throughout 2000-2024. Rail employment shows minor fluctuations around 8-10%, while other and water transport remain negligible components of total transport employment.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="earnings_time"></div>
+      <div class="chart-text">
+        <h3>Earnings by Mode</h3>
+        <p>Other transport accounts for the largest earnings shares, with an unstable proportion, whereas the others maintain relatively stable proportions. Air transport earnings proportion grew from 2008-2014 before stabilizing, reflecting post-GFC recovery patterns.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="gender_employment"></div>
+      <div class="chart-text">
+        <h3>Gender in Employment</h3>
+        <p>This horizontal bar chart shows the proportion of employment by gender within specific transport sub-industries and across the transport industry as a whole. While gender balance varies widely between sub-industries, the overall transport sector remains consistently male-dominated, at roughly 80% <span class="male">male</span> and 20% <span class="female">female</span>. See "Total" in 2021 for comments.</p>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart" id="economy_time"></div>
+      <div class="chart-text">
+        <h3>Freight & GDP</h3>
+        <p>This combined line and bar chart shows how different transport types within the industry contribute to GDP. Most transport modes track closely with GDP growth, rising sharply before the GFC. GDP itself fell in 2020 yet local delivery (Road) actually saw an increase.</p>
+      </div>
     </div>
   </div>
 

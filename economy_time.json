@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Freight Transport Contribution and GDP in Australia (1974–2023)",
+  "title": {"text": "Freight Transport Contribution and GDP in Australia", "anchor": "middle"},
   "data": {
     "url": "Economy_Time.csv",
     "format": {"type": "csv"}
   },
   "vconcat": [
     {
-      "width": 800,
+      "width": 650,
       "height": 400,
       "layer": [
         {
@@ -70,7 +70,7 @@
       }
     },
     {
-      "width": 800,
+      "width": 650,
       "height": 100,
       "mark": {"type": "line", "point": false, "strokeWidth": 2},
       "params": [
@@ -78,7 +78,7 @@
       ],
       "encoding": {
         "x": {"field": "Year", "type": "quantitative", "axis": {"format": "d"}, "scale": {"domain": [1974, 2023]}},
-        "y": {"field": "Value_Num", "type": "quantitative"},
+        "y": {"field": "Value_Num", "type": "quantitative", "title": "Contribution"},
         "color": {"field": "Mode_Label", "type": "nominal", "legend": null}
       },
       "transform": [

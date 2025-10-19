@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
+  "width": 500,
   "height": 400,
-  "title": "Motor Vehicles per Capita by State (2023)",
+  "title": "Motor Vehicles per Capita by State",
   "data": {"url": "Type_Capita.csv"},
   "transform": [
     {"filter": "datum.Year == 2023"}

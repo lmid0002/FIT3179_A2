@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Transport Usage by Income Bracket (% of Type)",
-  "width": 650,
+  "title": "Transport Usage by Income Bracket",
+  "width": 600,
   "height": 400,
   "data": {"url": "Type_Income.csv"},
   "mark": "rect",
