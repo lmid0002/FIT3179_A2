@@ -31,7 +31,8 @@
         "color": {
           "field": "Type",
           "type": "nominal",
-          "title": "Transport Type"
+          "title": "Transport Type",
+          "scale": {"scheme": "dark2"}
         },
         "tooltip": [
           {"field": "Type", "type": "nominal"},

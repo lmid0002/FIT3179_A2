@@ -31,7 +31,7 @@
       "field": "Mode",
       "type": "nominal",
       "title": "Transport Mode",
-      "scale": {"scheme": "category10"}
+      "scale": {"scheme": "dark2"}
     },
     "tooltip": [
       {"field":"Year","type":"ordinal"},

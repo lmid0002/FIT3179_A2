@@ -38,7 +38,7 @@
           "title": "Percentage (%)",
           "stack": "zero"
         },
-        "color": {"field": "ModeName", "type": "nominal"},
+        "color": {"field": "ModeName", "type": "nominal", "scale": {"scheme": "set2"}},
         "tooltip": [
           {"field": "Year", "type": "quantitative"},
           {"field": "ModeName", "type": "nominal", "title": "Mode"},
@@ -84,7 +84,7 @@
           "title": "Percentage (%)",
           "stack": "zero"
         },
-        "color": {"field": "ModeName", "type": "nominal", 
+        "color": {"field": "ModeName", "type": "nominal", "scale": {"scheme": "set2"},
         "legend": {
                 "title": "Mode of Transport",
                 "orient": "right",
